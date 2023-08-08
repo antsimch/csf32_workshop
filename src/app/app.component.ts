@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'csf32_workshop';
+
+  tasks: { description: string, priority: string, dueDate: Date, isComplete: boolean }[] = [];
+
+  addToOutstanding(event: any) {
+    console.log(JSON.stringify(event.value));
+    this.tasks.push(event.value);
+  }
 }

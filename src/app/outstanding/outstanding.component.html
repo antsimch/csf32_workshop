@@ -1,0 +1,26 @@
+<div class="class" *ngIf="outstandingTasks.length > 0">
+    <table class="table table-primary">
+        <thead>
+            <th>Tasks:</th>
+            <th>Actions:</th>
+        </thead>
+        <tbody>
+            <tr class="row" *ngFor="let task of outstandingTasks">
+                <div *ngIf="task.isComplete == false">
+                    <td>
+                        {{task.description}}
+                        <br>
+                        {{task.priority}}
+                        <br>
+                        {{task.dueDate}}
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" (click)="task.isComplete = true">Mark Complete</button>
+                        <button class="btn btn-secondary">Edit</button>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </div>
+            </tr>
+        </tbody>
+    </table>
+</div>
