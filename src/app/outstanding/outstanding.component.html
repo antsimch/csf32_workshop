@@ -1,25 +1,28 @@
-<div class="class" *ngIf="outstandingTasks.length > 0">
-    <table class="table table-primary">
+<div class="container" *ngIf="outstandingTasks.length > 0">
+    <table class="table table-primary" border="1">
         <thead>
             <th>Tasks:</th>
             <th>Actions:</th>
         </thead>
         <tbody>
-            <tr class="row" *ngFor="let task of outstandingTasks">
-                <div *ngIf="task.isComplete == false">
-                    <td>
-                        {{task.description}}
-                        <br>
-                        {{task.priority}}
-                        <br>
-                        {{task.dueDate}}
-                    </td>
-                    <td>
-                        <button class="btn btn-primary" (click)="task.isComplete = true">Mark Complete</button>
-                        <button class="btn btn-secondary">Edit</button>
-                        <button class="btn btn-danger">Delete</button>
-                    </td>
-                </div>
+            <tr *ngFor="let task of outstandingTasks">
+                <td *ngIf="task.isComplete != true">
+                    Description:
+                    &emsp;
+                    {{task.description}}
+                    <br>
+                    Priority:
+                    &emsp;
+                    {{task.priority}}
+                    <br>
+                    Due Date:
+                    &emsp;
+                    {{task.dueDate}}
+                </td>
+                <td *ngIf="task.isComplete != true">
+                    <button class="btn btn-primary" (click)="task.isComplete = true">Complete</button>
+                    <button class="btn btn-danger" (click)="deleteTask(task)">Delete</button>
+                </td>
             </tr>
         </tbody>
     </table>

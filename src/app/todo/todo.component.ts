@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Component({
@@ -10,17 +10,18 @@ export class TodoComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
 
-  @Output() task = new EventEmitter();
+  @Output() 
+  task = new EventEmitter();
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      description: this.fb.control<string>('', [ Validators.required, Validators.minLength(5) ]),
-      priority: this.fb.control<string>('Low'),
-      dueDate: this.fb.control<Date>(new Date(), [ ValidateDate ]),
-      isComplete: false
-    })
+      this.form = this.fb.group({
+        description: this.fb.control<string>('', [ Validators.required, Validators.minLength(5) ]),
+        priority: this.fb.control<string>('Low'),
+        dueDate: this.fb.control<Date>(new Date(), [ ValidateDate ]),
+        isComplete: false
+      })
   }
 
   processForm(form: any) {

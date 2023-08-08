@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Task } from '../task';
 
 @Component({
   selector: 'app-outstanding',
@@ -8,9 +9,13 @@ import { Component, Input } from '@angular/core';
 export class OutstandingComponent {
   
   @Input()
-  outstandingTasks: { 
-      description: string, 
-      priority: string, 
-      dueDate: Date,
-      isComplete: boolean}[] = []; 
+  outstandingTasks: Task[] = []; 
+
+  deleteTask(taskToDelete: Task) {
+    this.outstandingTasks = this.outstandingTasks.filter(
+      (task) => {
+        return task !== taskToDelete;
+      }
+    );
+  }
 }

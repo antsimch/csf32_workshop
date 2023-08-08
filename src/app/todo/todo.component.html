@@ -1,32 +1,49 @@
-<div class="class">
-    <span>ToDo</span>
+<div class="container">
+    <h3>To Do:</h3>
     <br>
     <form [formGroup]="form" (ngSubmit)="processForm(form)">
         <div class="mb-3">
             <label for="description" class="form-label">Description: </label>
-            <input type="text" class="form-control" formControlName="description">
-            <span *ngIf="form.get('description')?.hasError('required')" class="text-danger">Description is required</span>
-            <span *ngIf="form.get('description')?.hasError('minlength')" class="text-danger">Description must have minimum of 5 characters</span>
+            <input type="text" 
+                    class="form-control" 
+                    formControlName="description">
+            <br>
+            <span *ngIf="form.get('description')?.hasError('required')" 
+                    class="text-danger">Description is required</span>
+            <span *ngIf="form.get('description')?.hasError('minlength')" 
+                    class="text-danger">Description must have minimum of 5 characters</span>
         </div>
         <div class="mb-3">
             <label for="priority" class="form-label">Priority: </label>
             <div class="form-check">
-                <input type="radio" class="form-check-input" formControlName="priority" value="High">
+                <input type="radio" 
+                        class="form-check-input" 
+                        formControlName="priority" 
+                        value="High">
                 <label for="">High</label>
             </div>
             <div class="form-check">
-                <input type="radio" class="form-check-input" formControlName="priority" value="Medium">
+                <input type="radio" 
+                        class="form-check-input" 
+                        formControlName="priority" 
+                        value="Medium">
                 <label for="">Medium</label>
             </div>
             <div class="form-check">
-                <input type="radio" class="form-check-input" formControlName="priority" value="Low" checked>
+                <input type="radio" 
+                        class="form-check-input" 
+                        formControlName="priority" 
+                        value="Low" 
+                        checked>
                 <label for="">Low</label>
             </div>
         </div>
         <div class="mb-3">
             <label for="dueDate" class="form-label">Due Date: </label>
             <input type="date" formControlName="dueDate">
-            <span *ngIf="form.get('dueDate')?.hasError('lessThanToday')" class="text-danger">Due date cannot be earlier than today</span>
+            <br>
+            <span *ngIf="form.get('dueDate')?.hasError('lessThanToday')" 
+                    class="text-danger">Due date cannot be earlier than today</span>
         </div>
         <button type="submit" [disabled]="!form.valid">Add</button>
     </form>
