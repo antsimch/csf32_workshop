@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, Valid
 export class TodoComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
+  priorities = ['High', 'Medium', 'Low'];
 
   @Output() 
   task = new EventEmitter();
@@ -18,7 +19,7 @@ export class TodoComponent implements OnInit {
   ngOnInit(): void {
       this.form = this.fb.group({
         description: this.fb.control<string>('', [ Validators.required, Validators.minLength(5) ]),
-        priority: this.fb.control<string>('Low'),
+        priority: this.fb.control<string>(this.priorities[2]),
         dueDate: this.fb.control<Date>(new Date(), [ ValidateDate ]),
         isComplete: false
       })
@@ -34,7 +35,7 @@ function ValidateDate(control: AbstractControl) {
   
   const dueDate = Date.parse(control.value);  
 
-  if (dueDate >= new Date().getTime())
+  if (dueDate >= new Date().setUTCHours(0, 0, 0, 0))
     return null;
 
   return {'lessThanToday': true} as ValidationErrors;

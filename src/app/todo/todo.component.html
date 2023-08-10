@@ -2,7 +2,7 @@
     <h3>To Do:</h3>
     <br>
     <form [formGroup]="form" (ngSubmit)="processForm(form)">
-        <div class="mb-3">
+        <div class="form-group">
             <label for="description" class="form-label">Description: </label>
             <input type="text" 
                     class="form-control" 
@@ -13,32 +13,18 @@
             <span *ngIf="form.get('description')?.hasError('minlength')" 
                     class="text-danger">Description must have minimum of 5 characters</span>
         </div>
-        <div class="mb-3">
+        <div class="form-group">
             <label for="priority" class="form-label">Priority: </label>
-            <div class="form-check">
-                <input type="radio" 
-                        class="form-check-input" 
-                        formControlName="priority" 
-                        value="High">
-                <label for="">High</label>
-            </div>
-            <div class="form-check">
-                <input type="radio" 
-                        class="form-check-input" 
-                        formControlName="priority" 
-                        value="Medium">
-                <label for="">Medium</label>
-            </div>
-            <div class="form-check">
-                <input type="radio" 
-                        class="form-check-input" 
-                        formControlName="priority" 
-                        value="Low" 
-                        checked>
-                <label for="">Low</label>
+            <div *ngFor="let priority of priorities">
+                <input 
+                    type="radio" 
+                    class="form-check-input" 
+                    formControlName="priority" 
+                    [value]="priority" 
+                    >{{priority}}
             </div>
         </div>
-        <div class="mb-3">
+        <div class="form-group">
             <label for="dueDate" class="form-label">Due Date: </label>
             <input type="date" formControlName="dueDate">
             <br>
